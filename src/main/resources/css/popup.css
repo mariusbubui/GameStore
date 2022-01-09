@@ -1,0 +1,14 @@
+.transparent{
+    -fx-background-color: rgba(0,0,0,0);
+}
+
+.button {
+    -fx-background-color: white;
+    -fx-border-color: #85d787;
+    -fx-border-width: 2px;
+    -fx-border-radius: 5px;
+}
+
+.button:hover{
+    -fx-background-color: #f6f6f6;
+}

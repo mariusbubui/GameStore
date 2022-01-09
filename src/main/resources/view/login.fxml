@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="450.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.LoginController">
+   <BorderPane prefHeight="450.0" prefWidth="800.0" style="-fx-background-color: #fff;">
+      <left>
+         <Pane prefHeight="450.0" prefWidth="350.0" styleClass="linear-grad" stylesheets="@../css/login.css" BorderPane.alignment="CENTER">
+            <ImageView fitHeight="107.0" fitWidth="110.0" layoutX="122.0" layoutY="128.0" pickOnBounds="true" preserveRatio="true" smooth="false">
+               <Image url="@../images/logo.png" />
+            </ImageView>
+            <Label alignment="CENTER" layoutX="82.0" layoutY="247.0" prefHeight="40.0" prefWidth="187.0" text="Game Store" textFill="WHITE">
+               <font>
+                  <Font name="Rockwell Bold Italic" size="30.0" />
+               </font>
+            </Label>
+            <Label alignment="CENTER" layoutX="55.0" layoutY="281.0" prefHeight="40.0" prefWidth="241.0" text="Every platform in one place" textFill="WHITE">
+               <font>
+                  <Font name="Lucida Fax Demibold" size="14.0" />
+               </font>
+            </Label>
+         </Pane>
+      </left>
+      <center>
+         <StackPane prefHeight="150.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+            <Pane fx:id="pnlLogin" prefHeight="450.0" prefWidth="450.0">
+               <PasswordField fx:id="textPassword" focusTraversable="false" layoutX="75.0" layoutY="217.0" prefHeight="35.0" prefWidth="300.0" promptText="Type your password" styleClass="text-input" stylesheets="@../css/login.css" />
+               <Button fx:id="btnLogin" layoutX="74.0" layoutY="313.0" mnemonicParsing="false" onMouseClicked="#clickLogin" prefHeight="38.0" prefWidth="302.0" styleClass="button1" stylesheets="@../css/login.css" text="Login">
+                  <font>
+                     <Font size="14.0" />
+                  </font>
+               </Button>
+               <Label fx:id="lblLogin" alignment="CENTER" layoutX="145.0" layoutY="53.0" prefHeight="40.0" prefWidth="141.0" style="-fx-background-color: #FFFFFF;" text=" Login" textAlignment="CENTER">
+                  <font>
+                     <Font name="System Bold" size="32.0" />
+                  </font>
+               </Label>
+               <Label fx:id="lblUser" layoutX="76.0" layoutY="117.0" prefHeight="32.0" prefWidth="95.0" text="Username" />
+               <Label fx:id="lblPassword" layoutX="76.0" layoutY="184.0" prefHeight="32.0" prefWidth="95.0" text="Password" />
+               <Label fx:id="lblAccount" layoutX="107.0" layoutY="380.0" text="Don't have an account?">
+                  <font>
+                     <Font size="16.0" />
+                  </font>
+               </Label>
+               <Label fx:id="lblSignUp" layoutX="283.0" layoutY="379.0" onMouseClicked="#switchPanes" styleClass="label1" stylesheets="@../css/login.css" text="Sign Up" textFill="#129ee4">
+                  <font>
+                     <Font name="System Bold" size="16.0" />
+                  </font>
+               </Label>
+               <ImageView fx:id="imgClose" fitHeight="62.0" fitWidth="62.0" layoutX="380.0" layoutY="2.0" onMouseClicked="#clickClose" pickOnBounds="true" preserveRatio="true" style="-fx-cursor: hand;">
+                  <Image url="@../images/close.png" />
+               </ImageView>
+               <Label fx:id="lblIncorrect" layoutX="86.0" layoutY="268.0" text="Sorry, your email or password is incorrect." textFill="RED" visible="false">
+                  <font>
+                     <Font size="15.0" />
+                  </font>
+               </Label>
+               <TextField fx:id="textEmail" layoutX="75.0" layoutY="149.0" prefHeight="35.0" prefWidth="300.0" promptText="Type your email" />
+            </Pane>
+            <Pane fx:id="pnlRegister" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #ffffff;" visible="false">
+               <ImageView fx:id="imgClose1" fitHeight="62.0" fitWidth="62.0" layoutX="380.0" layoutY="2.0" onMouseClicked="#clickClose" pickOnBounds="true" preserveRatio="true" style="-fx-cursor: hand;">
+                  <Image url="@../images/close.png" />
+               </ImageView>
+               <ImageView fx:id="imgBack" fitHeight="47.0" fitWidth="53.0" layoutX="14.0" layoutY="11.0" onMouseClicked="#switchPanes" pickOnBounds="true" preserveRatio="true" style="-fx-cursor: hand;">
+                  <Image url="@../images/back.png" />
+               </ImageView>
+               <Label fx:id="lblRegister" alignment="CENTER" contentDisplay="CENTER" layoutX="155.0" layoutY="54.0" prefHeight="40.0" prefWidth="141.0" style="-fx-background-color: #FFFFFF;" text="Register" textAlignment="CENTER">
+                  <font>
+                     <Font name="System Bold" size="32.0" />
+                  </font>
+               </Label>
+               <PasswordField fx:id="textPasswordRegister" focusTraversable="false" layoutX="90.0" layoutY="243.0" prefHeight="35.0" prefWidth="321.0" promptText="Type your password" styleClass="text-input" stylesheets="@../css/login.css" />
+               <PasswordField fx:id="textPasswordConfirm" focusTraversable="false" layoutX="90.0" layoutY="297.0" prefHeight="35.0" prefWidth="321.0" promptText="Repeat your password" styleClass="text-input" stylesheets="@../css/login.css" />
+               <TextField fx:id="textEmailRegister" focusTraversable="false" layoutX="90.0" layoutY="188.0" prefHeight="35.0" prefWidth="150.0" promptText="Type your email" styleClass="text-input" stylesheets="@../css/login.css" />
+               <TextField fx:id="textFirst" focusTraversable="false" layoutX="90.0" layoutY="137.0" prefHeight="35.0" prefWidth="150.0" promptText="First Name" styleClass="text-input" stylesheets="@../css/login.css" />
+               <TextField fx:id="textLast" focusTraversable="false" layoutX="260.0" layoutY="137.0" prefHeight="35.0" prefWidth="150.0" promptText="Last Name" styleClass="text-input" stylesheets="@../css/login.css" />
+               <TextField fx:id="textPhone" focusTraversable="false" layoutX="260.0" layoutY="188.0" prefHeight="35.0" prefWidth="150.0" promptText="Phone number" styleClass="text-input" stylesheets="@../css/login.css" />
+               <Button fx:id="btnSingUp" layoutX="38.0" layoutY="381.0" mnemonicParsing="false" onMouseClicked="#clickSignUp" prefHeight="38.0" prefWidth="375.0" styleClass="button1" stylesheets="@../css/login.css" text="Sign up">
+                  <font>
+                     <Font size="14.0" />
+                  </font>
+               </Button>
+               <ImageView fx:id="imgUser" fitHeight="42.0" fitWidth="39.0" layoutX="36.0" layoutY="134.0" pickOnBounds="true" preserveRatio="true">
+                  <Image url="@../images/user.png" />
+               </ImageView>
+               <ImageView fx:id="imgContact" fitHeight="43.0" fitWidth="47.0" layoutX="33.0" layoutY="183.0" pickOnBounds="true">
+                  <Image url="@../images/contact.png" />
+               </ImageView>
+               <ImageView fx:id="imgLock" fitHeight="43.0" fitWidth="45.0" layoutX="35.0" layoutY="238.0" pickOnBounds="true">
+                  <Image url="@../images/lock.png" />
+               </ImageView>
+               <ImageView fx:id="imgRepeat" fitHeight="57.0" fitWidth="54.0" layoutX="31.0" layoutY="287.0" pickOnBounds="true" preserveRatio="true">
+                  <Image url="@../images/repeat.png" />
+               </ImageView>
+               <Label fx:id="labelMessageRegister" alignment="CENTER" layoutX="90.0" layoutY="341.0" text="Registration completed" textFill="#ff0505" visible="false">
+                  <font>
+                     <Font size="14.0" />
+                  </font>
+               </Label>
+               <ImageView fx:id="imageOk" fitHeight="30.0" fitWidth="30.0" layoutX="282.0" layoutY="340.0" pickOnBounds="true" preserveRatio="true" visible="false">
+                  <Image url="@../images/ok.png" />
+               </ImageView>
+            </Pane>
+         </StackPane>
+      </center>
+   </BorderPane>
+</AnchorPane>

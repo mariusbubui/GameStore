@@ -1,0 +1,246 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.String?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Circle?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.text.Font?>
+<?import org.controlsfx.control.Rating?>
+
+<AnchorPane fx:id="anchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="750.0" prefWidth="1350.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.StoreController">
+   <BorderPane prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <left>
+         <VBox prefHeight="750.0" prefWidth="404.0" styleClass="left-bar" stylesheets="@../css/store.css" BorderPane.alignment="CENTER">
+            <HBox alignment="CENTER" prefHeight="125.0" prefWidth="404.0">
+               <Label prefHeight="45.0" prefWidth="100.0" text="Game">
+                  <font>
+                     <Font name="Cambria Bold" size="36.0" />
+                  </font>
+               </Label>
+               <ImageView fitHeight="76.0" fitWidth="76.0" pickOnBounds="true" smooth="false">
+                  <Image url="@../images/logo.png" />
+               </ImageView>
+               <Label alignment="TOP_RIGHT" prefHeight="45.0" prefWidth="92.0" text="Store">
+                  <font>
+                     <Font name="Cambria Bold" size="36.0" />
+                  </font>
+               </Label>
+               <VBox.margin>
+                  <Insets />
+               </VBox.margin>
+            </HBox>
+            <Line endX="303.29290771484375" endY="-0.621320366859436" startX="-100.0" strokeWidth="2.0">
+               <VBox.margin>
+                  <Insets />
+               </VBox.margin>
+            </Line>
+            <StackPane prefHeight="612.0" prefWidth="407.0">
+               <VBox fx:id="cartDisplay" alignment="TOP_CENTER" prefHeight="200.0" prefWidth="407.0" styleClass="left-game" stylesheets="@../css/store.css" visible="false">
+                  <StackPane.margin>
+                     <Insets bottom="5.0" left="15.0" right="15.0" top="10.0" />
+                  </StackPane.margin>
+                  <Label alignment="CENTER" prefHeight="45.0" prefWidth="295.0" text="Your Shopping Cart" textFill="WHITE">
+                     <font>
+                        <Font name="System Bold Italic" size="24.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets top="5.0" />
+                     </VBox.margin>
+                  </Label>
+                  <ScrollPane fx:id="scrollCart" prefHeight="489.0" prefWidth="357.0">
+                     <VBox.margin>
+                        <Insets bottom="10.0" left="10.0" right="10.0" top="5.0" />
+                     </VBox.margin>
+                  </ScrollPane>
+                  <Button fx:id="buttonCart1" mnemonicParsing="false" onMousePressed="#interactWithCart" prefHeight="40.0" prefWidth="280.0" styleClass="add-btn" stylesheets="@../css/store.css" text="PLACE ORDER" textFill="#828282">
+                     <font>
+                        <Font name="System Bold" size="17.0" />
+                     </font>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                     <VBox.margin>
+                        <Insets bottom="12.0" />
+                     </VBox.margin>
+                  </Button>
+               </VBox>
+               <VBox fx:id="gameDisplay" alignment="TOP_CENTER" prefHeight="584.0" prefWidth="347.0" styleClass="left-game" stylesheets="@../css/store.css">
+                  <HBox alignment="CENTER" prefHeight="51.0" prefWidth="344.0">
+                     <VBox.margin>
+                        <Insets top="10.0" />
+                     </VBox.margin>
+                     <Label fx:id="gameName" alignment="CENTER" prefHeight="45.0" prefWidth="324.0" text="GTA V" textFill="WHITE">
+                        <font>
+                           <Font name="Cambria Bold" size="30.0" />
+                        </font>
+                     </Label>
+                  </HBox>
+                  <ImageView fx:id="imageGame" fitHeight="160.0" fitWidth="300.0" pickOnBounds="true">
+                     <Image url="@../../../../../../../../gta.jpg" />
+                  </ImageView>
+                  <HBox alignment="CENTER" prefHeight="47.0" prefWidth="347.0">
+                     <Label fx:id="labelPlatform" alignment="CENTER" prefHeight="26.0" prefWidth="140.0" styleClass="category" stylesheets="@../css/item.css" text="PC" textAlignment="CENTER">
+                        <font>
+                           <Font name="Cambria Bold Italic" size="14.0" />
+                        </font>
+                        <cursor>
+                           <Cursor fx:constant="DEFAULT" />
+                        </cursor>
+                        <HBox.margin>
+                           <Insets right="10.0" />
+                        </HBox.margin>
+                     </Label>
+                     <Label fx:id="labelCategory" alignment="CENTER" prefHeight="26.0" prefWidth="140.0" styleClass="category" stylesheets="@../css/item.css" text="Action" textAlignment="CENTER">
+                        <font>
+                           <Font name="Cambria Bold Italic" size="14.0" />
+                        </font>
+                        <cursor>
+                           <Cursor fx:constant="DEFAULT" />
+                        </cursor>
+                        <HBox.margin>
+                           <Insets left="10.0" />
+                        </HBox.margin>
+                     </Label>
+                     <VBox.margin>
+                        <Insets top="5.0" />
+                     </VBox.margin>
+                  </HBox>
+                  <Label fx:id="gameDescription" alignment="TOP_LEFT" prefHeight="148.0" prefWidth="292.0" text="Grand Theft Auto V for PC offers players the option to explore the award-winning world of Los Santos and Blaine County in resolutions of up to 4k and beyond." textAlignment="CENTER" textFill="WHITE" wrapText="true">
+                     <font>
+                        <Font name="Cambria Bold Italic" size="17.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets left="5.0" right="5.0" top="10.0" />
+                     </VBox.margin>
+                  </Label>
+                  <Label fx:id="labelPublisher" text="Rockstar" textFill="WHITE">
+                     <font>
+                        <Font name="System Bold Italic" size="18.0" />
+                     </font>
+                  </Label>
+                  <HBox alignment="CENTER" prefHeight="56.0" prefWidth="347.0">
+                     <Label fx:id="gamePrice" alignment="CENTER" prefHeight="53.0" prefWidth="135.0" text="160.0 €" textAlignment="CENTER" textFill="WHITE">
+                        <font>
+                           <Font name="Cambria" size="34.0" />
+                        </font>
+                        <HBox.margin>
+                           <Insets right="10.0" />
+                        </HBox.margin>
+                     </Label>
+                     <Label fx:id="labelAvailable" alignment="CENTER" prefHeight="33.0" prefWidth="116.0" styleClass="available" stylesheets="@../css/store.css" text="Available">
+                        <font>
+                           <Font name="System Bold Italic" size="18.0" />
+                        </font>
+                        <HBox.margin>
+                           <Insets left="10.0" />
+                        </HBox.margin>
+                     </Label>
+                  </HBox>
+                  <Rating fx:id="userRating" prefWidth="175.0" rating="0.0">
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor></Rating>
+                  <Button fx:id="buttonCart" mnemonicParsing="false" onMousePressed="#interactWithCart" prefHeight="40.0" prefWidth="280.0" styleClass="add-btn" stylesheets="@../css/store.css" text="ADD TO CART" textFill="#828282">
+                     <VBox.margin>
+                        <Insets bottom="15.0" top="10.0" />
+                     </VBox.margin>
+                     <font>
+                        <Font name="System Bold" size="17.0" />
+                     </font>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </Button>
+                  <StackPane.margin>
+                     <Insets bottom="5.0" left="15.0" right="15.0" top="10.0" />
+                  </StackPane.margin>
+               </VBox>
+            </StackPane>
+         </VBox>
+      </left>
+      <center>
+         <VBox prefHeight="750.0" prefWidth="925.0" BorderPane.alignment="CENTER">
+            <HBox prefHeight="125.0" prefWidth="946.0">
+               <Pane prefHeight="125.0" prefWidth="947.0">
+                  <ImageView fx:id="imgClose" fitHeight="78.0" fitWidth="84.0" layoutX="855.0" layoutY="21.0" onMouseClicked="#close" pickOnBounds="true" preserveRatio="true" style="-fx-cursor: hand;">
+                     <Image url="@../images/close.png" />
+                  </ImageView>
+                  <ImageView fx:id="user" fitHeight="85.0" fitWidth="85.0" layoutX="10.0" layoutY="19.0" pickOnBounds="true" preserveRatio="true" style="-fx-cursor: hand;">
+                     <Image url="@../images/userIcon.png" />
+                  </ImageView>
+                  <Label fx:id="userName" layoutX="106.0" layoutY="44.0" prefHeight="34.0" prefWidth="136.0" text="Hi, Marius">
+                     <font>
+                        <Font name="System Bold Italic" size="20.0" />
+                     </font>
+                  </Label>
+                  <HBox alignment="CENTER" layoutX="263.0" layoutY="27.0" prefHeight="60.0" prefWidth="433.0" stylesheets="@../css/store.css">
+                     <styleClass>
+                        <String fx:value="search-box" />
+                        <String fx:value="shadow" />
+                     </styleClass>
+                     <TextField fx:id="textSearch" focusTraversable="false" onKeyReleased="#searchUpdate" prefHeight="40.0" prefWidth="290.0" promptText="Type here to search" styleClass="transparent" stylesheets="@../css/store.css">
+                        <HBox.margin>
+                           <Insets right="5.0" />
+                        </HBox.margin>
+                        <padding>
+                           <Insets left="20.0" />
+                        </padding>
+                        <font>
+                           <Font size="13.0" />
+                        </font>
+                     </TextField>
+                     <Button fx:id="buttonSearch" mnemonicParsing="false" onAction="#search" prefHeight="35.0" prefWidth="90.0" styleClass="search-button" stylesheets="@../css/store.css" text="Search" textFill="WHITE">
+                        <HBox.margin>
+                           <Insets left="10.0" />
+                        </HBox.margin>
+                        <cursor>
+                           <Cursor fx:constant="HAND" />
+                        </cursor>
+                     </Button>
+                  </HBox>
+                  <ImageView fx:id="cart" fitHeight="86.0" fitWidth="77.0" layoutX="754.0" layoutY="19.0" onMouseClicked="#clickCart" pickOnBounds="true" preserveRatio="true" style="-fx-cursor: hand;">
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                     <Image url="@../images/cart.png" />
+                  </ImageView>
+                  <Circle fx:id="circleCart" fill="#ff5353" layoutX="809.0" layoutY="76.0" radius="21.8" stroke="BLACK" strokeType="INSIDE" />
+                  <Label fx:id="labelCartItems" alignment="CENTER" layoutX="787.0" layoutY="54.0" onMouseClicked="#clickCart" prefHeight="45.0" prefWidth="44.0" text="10">
+                     <font>
+                        <Font name="System Bold Italic" size="24.0" />
+                     </font>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </Label>
+               </Pane>
+            </HBox>
+            <Line endX="841.0" startX="-100.0" strokeWidth="2.0">
+               <VBox.margin>
+                  <Insets bottom="1.0" />
+               </VBox.margin>
+            </Line>
+            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
+               <ScrollPane fx:id="scrollGames" fitToWidth="true" hbarPolicy="NEVER" prefHeight="500.0" prefWidth="900.0" styleClass="transparent" stylesheets="@../css/store.css">
+                  <HBox.margin>
+                     <Insets bottom="20.0" top="10.0" />
+                  </HBox.margin>
+               </ScrollPane>
+            </HBox>
+         </VBox>
+      </center>
+   </BorderPane>
+</AnchorPane>
