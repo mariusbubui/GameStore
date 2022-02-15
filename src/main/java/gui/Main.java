@@ -11,17 +11,47 @@ import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import user.User;
 
+import javax.money.convert.ConversionQuery;
+import javax.money.convert.ConversionQueryBuilder;
+import javax.money.convert.MonetaryConversions;
+import java.util.Date;
 import java.util.Objects;
 
+/**
+ *
+ */
 public class Main extends Application{
+    /**
+     *
+     */
     static User user;
 
-    private double xOffset = 0;
-    private double yOffset = 0;
+    /**
+     *
+     */
+    static double xOffset = 0;
 
+    /**
+     *
+     */
+    static double yOffset = 0;
+
+    /**
+     *
+     */
+    static Parent root;
+
+    /**
+     *
+     */
+    static Stage stage;
+
+    /**
+     *
+     */
     @Override
     public void start(Stage stage) throws Exception {
-        Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/view/login.fxml")));
+        root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/view/login.fxml")));
         Scene scene = new Scene(root);
 
         stage.setScene(scene);
@@ -29,13 +59,20 @@ public class Main extends Application{
         stage.getIcons().add(new Image("file:src/main/resources/images/icon.png"));
         stage.setResizable(false);
 
-        dragStage(root, stage);
+        Main.stage = stage;
 
-        stage.setScene(scene);
-        stage.show();
+        dragStage();
+        Main.stage.setScene(scene);
+        Main.stage.show();
+        centerStage();
+
+        loadCurrencyConversion();
     }
 
-    private void dragStage(Parent root, Stage stage){
+    /**
+     *
+     */
+    static void dragStage(){
         root.setOnMousePressed((javafx.scene.input.MouseEvent event) -> {
             xOffset = stage.getX() - event.getScreenX();
             yOffset = stage.getY() - event.getScreenY();
@@ -47,12 +84,30 @@ public class Main extends Application{
         });
     }
 
-    public static void centerStage(Stage stage){
+    /**
+     *
+     */
+    static void centerStage(){
         Rectangle2D screenBounds = Screen.getPrimary().getVisualBounds();
         stage.setX((screenBounds.getWidth() - stage.getWidth()) / 2);
         stage.setY((screenBounds.getHeight() - stage.getHeight()) / 2);
     }
 
+    /**
+     *
+     */
+    public void loadCurrencyConversion(){
+        new Thread(() -> {
+            ConversionQuery conversionQuery = ConversionQueryBuilder.of().setTermCurrency("RON").
+                    set(Date.class, new Date()).build();
+
+            MonetaryConversions.getExchangeRateProvider().getCurrencyConversion(conversionQuery);
+        }).start();
+    }
+
+    /**
+     *
+     */
     public static void main(String[] args) {
         launch(args);
     }

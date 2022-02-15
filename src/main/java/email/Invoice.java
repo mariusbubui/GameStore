@@ -8,14 +8,39 @@ import game.Game;
 import order.Order;
 import user.Customer;
 
+/**
+ *
+ */
 public class Invoice {
+    /**
+     *
+     */
     private final static String pathLoad = "src/main/resources/invoice/invoice_template.docx";
+
+    /**
+     *
+     */
     private final static String pathSave = "src/main/resources/invoice/invoice.pdf";
 
+
+    /**
+     *
+     */
     private final Document invoice;
+
+    /**
+     *
+     */
     private final Customer customer;
+
+    /**
+     *
+     */
     private final Order order;
 
+    /**
+     *
+     */
     public Invoice(Customer customer, Order order) {
         this.customer = customer;
         this.order = order;
@@ -30,6 +55,9 @@ public class Invoice {
         invoice.saveToFile(pathSave, FileFormat.PDF);
     }
 
+    /**
+     *
+     */
     private void writeData(){
         int rows = order.getOrder().size();
         Table table = invoice.getSections().get(0).getTables().get(1);
@@ -44,6 +72,9 @@ public class Invoice {
         fillTableWithData(table);
     }
 
+    /**
+     *
+     */
     private void addRows(Table table, int rows) {
         for (int i = 0; i < rows; i++) {
             table.getRows().insert(2 + i, table.getRows().get(1).deepClone());
@@ -57,6 +88,9 @@ public class Invoice {
         }
     }
 
+    /**
+     *
+     */
     private void fillTableWithData(Table table) {
         int i = 0;
 
@@ -83,6 +117,9 @@ public class Invoice {
                 .setText(String.valueOf(order.getTotalPrice() - order.getTotalPrice() * discount));
     }
 
+    /**
+     *
+     */
     public String getPath(){
         return pathSave;
     }

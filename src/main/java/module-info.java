@@ -9,6 +9,7 @@ module GameStore {
     requires java.mail;
     requires org.controlsfx.controls;
     requires Spire.Doc;
+    requires javax.money;
 
     opens gui;
     opens dao;

@@ -8,32 +8,37 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.util.Properties;
 
+/**
+ * ConnectionManager is a utility class that manages
+ * the connection to the database.
+ *
+ * @author      Marius Bubui
+ * @version     1.0
+ */
 public class ConnectionManager {
+    /**
+     * The location of the file containing the configurations.
+     */
     private static final String properties = "src/main/resources/dbconfig.properties";
-    private static Connection connection;
 
+    /**
+     * Methode that generates a connection
+     * with thr database.
+     *
+     * @return the new connection object or null
+     */
     public static Connection getConnection() {
-        try (InputStream input = new FileInputStream(properties)) {
-            Properties prop = new Properties();
-            prop.load(input);
+        Connection connection;
+        try (InputStream stream = new FileInputStream(properties)) {
 
+            Properties prop = new Properties();
+            prop.load(stream);
             Class.forName(prop.getProperty("db.driver"));
-            try {
-                connection = DriverManager.getConnection(prop.getProperty("db.url"), prop.getProperty("db.username"), prop.getProperty("db.password"));
-            } catch (SQLException e) {
-                System.out.println("Failed to create the database connection.");
-                return null;
-            }
-        } catch (ClassNotFoundException e) {
-            System.out.println("Driver not found.");
+            connection = DriverManager.getConnection(prop.getProperty("db.url"), prop.getProperty("db.username"), prop.getProperty("db.password"));
+
+        } catch (ClassNotFoundException | IOException | SQLException e) {
             return null;
-        } catch (IOException e) {
-            //e.printStackTrace();
         }
         return connection;
-    }
-
-    public static void closeConnection() throws SQLException {
-        connection.close();
     }
 }

@@ -12,18 +12,18 @@
 }
 
 .button1{
-    -fx-text-fill: #3f1448;
-    -fx-background-radius: 14;
-    -fx-background-color: linear-gradient(to left, #9D50BB, #C9FFBF);
-    -fx-border-color: #3f1448;
+    -fx-text-fill: #1f1a30;
+    -fx-background-radius: 16;
+    -fx-background-color: #00e0d6;
+    -fx-border-color: #1f1a30;
     -fx-border-radius: 14;
 }
 
 .button1:hover {
-    -fx-background-color: #C9FFBF;
+    -fx-background-color: #00fff4;
     -fx-cursor: hand;
 }
 
 .linear-grad {
-    -fx-background-color: linear-gradient(to bottom left, #C9FFBF, #9D50BB);
+    -fx-background-color: linear-gradient(to bottom left, #0df6e3, #1f1a30);
 }

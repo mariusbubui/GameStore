@@ -3,18 +3,63 @@ package game;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ *
+ */
 public class Game {
+    /**
+     *
+     */
     private final int id;
+
+    /**
+     *
+     */
     private String name;
+
+    /**
+     *
+     */
     private String publisher;
+
+    /**
+     *
+     */
     private String description;
+
+    /**
+     *
+     */
     private List<String> platform;
+
+    /**
+     *
+     */
     private List<Category> category;
+
+    /**
+     *
+     */
     private double price;
+
+    /**
+     *
+     */
     private boolean status;
+
+    /**
+     *
+     */
     private Rating rating;
+
+    /**
+     *
+     */
     private String imageName;
 
+    /**
+     *
+     */
     public Game(int id, String name, String publisher, String description, List<String> platform, List<String> category, double price, boolean status, double stars, int numberOfRatings, String imageName) {
         if (id < 0)
             throw new IllegalArgumentException("Id can't be a negative number!");
@@ -59,6 +104,9 @@ public class Game {
         this.imageName = imageName;
     }
 
+    /**
+     *
+     */
     @Override
     public boolean equals(Object obj) {
         if (this == obj) return true;
@@ -67,6 +115,9 @@ public class Game {
         return id == that.id && name.equals(that.name);
     }
 
+    /**
+     *
+     */
     @Override
     public int hashCode() {
         int result = 17;
@@ -79,6 +130,9 @@ public class Game {
         return result;
     }
 
+    /**
+     * Transforms the object into a string.
+     */
     @Override
     public String toString() {
         return "Game{" + "id=" + id + ", name='" + name + '\'' +
@@ -87,79 +141,80 @@ public class Game {
                 ", status=" + status + ", rating=" + rating + ", image='" + imageName + "'}";
     }
 
+    /**
+     *
+     */
     public int getId() {
         return id;
     }
 
+    /**
+     *
+     */
     public String getName() {
         return name;
     }
 
+    /**
+     *
+     */
     public String getPublisher() {
         return publisher;
     }
 
+    /**
+     *
+     */
     public String getDescription() {
         return description;
     }
 
+    /**
+     *
+     */
     public List<String> getPlatform() {
         return platform;
     }
 
+    /**
+     *
+     */
     public List<Category> getCategory() {
         return category;
     }
 
+    /**
+     *
+     */
     public double getPrice() {
         return price;
     }
 
+    /**
+     *
+     */
     public boolean getStatus() {
         return status;
     }
 
+    /**
+     *
+     */
     public Rating getRating() {
         return rating;
     }
 
+    /**
+     *
+     */
     public String getImageName() {
         return imageName;
     }
 
+    /**
+     *
+     */
     public void setName(String name) {
         this.name = name;
-    }
-
-    public void setPublisher(String publisher) {
-        this.publisher = publisher;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    public void setPlatform(List<String> platform) {
-        this.platform = platform;
-    }
-
-    public void setCategory(List<Category> category) {
-        this.category = category;
-    }
-
-    public void setPrice(double price) {
-        this.price = price;
-    }
-
-    public void setStatus(boolean status) {
-        this.status = status;
-    }
-
-    public void setRating(Rating rating) {
-        this.rating = rating;
-    }
-
-    public void setImageName(String imageName) {
-        this.imageName = imageName;
     }
 }

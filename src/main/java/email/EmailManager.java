@@ -1,26 +1,32 @@
 package email;
 
-import dao.UserDAO;
 import game.Game;
 import order.Order;
 import user.Customer;
 
 import java.io.*;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.sql.SQLException;
 import java.util.Properties;
 import java.util.Random;
 import javax.mail.*;
-import javax.mail.internet.InternetAddress;
-import javax.mail.internet.MimeBodyPart;
-import javax.mail.internet.MimeMessage;
-import javax.mail.internet.MimeMultipart;
+import javax.mail.internet.*;
 
+/**
+ *
+ */
 public class EmailManager {
+    /**
+     *
+     */
     private static final String config = "src/main/resources/mail_config.properties";
+
+    /**
+     *
+     */
     private static final Properties configuration = new Properties();
 
+    /**
+     *
+     */
     private static Properties setProperties(){
         Properties properties = System.getProperties();
 
@@ -33,6 +39,9 @@ public class EmailManager {
         return properties;
     }
 
+    /**
+     *
+     */
     private static Session getSession() throws IOException {
         Properties systemProperties = setProperties();
 
@@ -47,7 +56,10 @@ public class EmailManager {
         }
     }
 
-    private static String generateKey() {
+    /**
+     *
+     */
+    public static String generateKey() {
         int leftLimit = 48;
         int rightLimit = 122;
         int targetStringLength = 10;
@@ -60,6 +72,9 @@ public class EmailManager {
                 .toString();
     }
 
+    /**
+     *
+     */
     private static String getMessage(Customer customer, Order order) {
         int i = 1;
         StringBuilder message = new StringBuilder("""
@@ -82,43 +97,72 @@ public class EmailManager {
         return message.toString();
     }
 
-    public static void sendEmail(Customer customer, Order order) throws MessagingException, IOException {
+    /**
+     *
+     */
+    public static MimeMessage getInvoiceMessage(Customer customer, Order order) throws IOException, MessagingException {
         Session session = getSession();
 
         MimeMessage message = new MimeMessage(session);
-        MimeBodyPart messageBodyPart = new MimeBodyPart();
-        Multipart multipart = new MimeMultipart();
         MimeBodyPart attachmentBodyPart = new MimeBodyPart();
-        String msg = getMessage(customer, order);
-        File pdf = new File(new Invoice(customer, order).getPath());
 
         message.setFrom(new InternetAddress(configuration.getProperty("mail.sender")));
         message.setRecipient(Message.RecipientType.TO, new InternetAddress(customer.getEmail()));
         message.setSubject("Your Game Store Receipt");
 
+        MimeBodyPart messageBodyPart = new MimeBodyPart();
+        String msg = getMessage(customer, order);
         messageBodyPart.setContent(msg, "text/html; charset=utf-8");
 
+        Multipart multipart = new MimeMultipart();
         multipart.addBodyPart(messageBodyPart);
+
+        File pdf = new File(new Invoice(customer, order).getPath());
+
         attachmentBodyPart.attachFile(pdf);
         multipart.addBodyPart(attachmentBodyPart);
 
         message.setContent(multipart);
         message.saveChanges();
 
+        return message;
+    }
+
+    /**
+     *
+     */
+    public static MimeMessage getConfirmationMessage(String email, String code) throws IOException, MessagingException {
+        Session session = getSession();
+
+        MimeMessage message = new MimeMessage(session);
+
+        message.setFrom(new InternetAddress(configuration.getProperty("mail.sender")));
+        message.setRecipient(Message.RecipientType.TO, new InternetAddress(email));
+        message.setSubject("Verify your account");
+
+        MimeBodyPart messageBodyPart = new MimeBodyPart();
+
+        String msg = """
+                <h1 style="font-size: 2em;">Confirm your email address</h1>
+                <p style="font-size: 1.2em;">Please use the code bellow to confirm your account:<br></p>
+                <b style="font-size: 1.1em;">%s</b><p style="font-size: 1.2em;">Cheers,<br>The GameStore Team</p>""".formatted(code);
+
+        messageBodyPart.setContent(msg, "text/html; charset=utf-8");
+
+        Multipart multipart = new MimeMultipart();
+        multipart.addBodyPart(messageBodyPart);
+
+        message.setContent(multipart);
+        message.saveChanges();
+
+        return message;
+    }
+
+    /**
+     *
+     */
+    public static void sendEmail(MimeMessage message) throws MessagingException {
         Transport.send(message);
-
-        Files.deleteIfExists(Path.of(pdf.getAbsolutePath()));
+        //Files.deleteIfExists(Path.of(pdf.getAbsolutePath()));
     }
-
-    public static void main(String[] args) {
-        try {
-            var c = (Customer)new UserDAO().checkLogin("marius_bubui@yahoo.com", "nzaf5y");
-            var o = c.getOrders().get(0);
-            EmailManager.sendEmail(c, o);
-        } catch (SQLException | MessagingException | IOException e) {
-            e.printStackTrace();
-        }
-
-    }
-
 }

@@ -7,6 +7,9 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import org.controlsfx.control.Rating;
 
+/**
+ *
+ */
 public class ItemController {
     @FXML
     private ImageView gameImage;
@@ -17,11 +20,17 @@ public class ItemController {
     @FXML
     private Rating generalRating;
 
+    /**
+     *
+     */
     @FXML
     private void clickGame(){
         listener.onClickListener(game);
     }
 
+    /**
+     *
+     */
     @FXML
     public void cycleCategory(){
         if(game.getCategory().size() > 1){
@@ -38,6 +47,9 @@ public class ItemController {
     private GameListener listener;
     private int categoryIndex = 0;
 
+    /**
+     *
+     */
     public void setData(Game game, GameListener listener){
         this.game = game;
         this.listener = listener;
